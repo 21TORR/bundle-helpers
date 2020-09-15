@@ -13,8 +13,11 @@ jobs:
             -   name: Install Composer
                 uses: php-actions/composer@v1
 
+            -   name: Install Composer Plugins
+                run: "COMPOSER_MEMORY_LIMIT=-1 composer global require bamarni/composer-bin-plugin  --no-interaction --prefer-dist --no-progress --no-suggest"
+
             -   name: Install Composer Bin
-                run: COMPOSER_MEMORY_LIMIT=-1 composer bin all install --no-interaction --prefer-dist --no-progress --no-suggest
+                run: "COMPOSER_MEMORY_LIMIT=-1 composer bin all install --no-interaction --prefer-dist --no-progress --no-suggest"
 
             -   name: Composer Normalize
                 uses: "docker://ergebnis/composer-normalize-action:latest"
