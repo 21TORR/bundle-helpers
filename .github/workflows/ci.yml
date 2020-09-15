@@ -1,0 +1,28 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout Code
+                uses: actions/checkout@v2
+
+            -   name: Install Composer
+                uses: php-actions/composer@v1
+
+            -   name: Install Composer Bin
+                run: COMPOSER_MEMORY_LIMIT=-1 composer bin all install --no-interaction --prefer-dist --no-progress --no-suggest
+
+            -   name: Composer Normalize
+                uses: "docker://ergebnis/composer-normalize-action:latest"
+                with:
+                    args: "--indent-size 4 --indent-style space --dry-run"
+
+            -   name: PHP CS Fixer
+                run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php_cs.dist --dry-run --no-interaction"
+
+            -   name: Psalm
+                run: "./vendor/bin/psalm --threads=4 -c vendor-bin/test/vendor/21torr/php-cs/psalm.xml"

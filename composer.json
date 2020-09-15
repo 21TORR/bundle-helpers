@@ -1,0 +1,41 @@
+{
+  "name": "21torr/rad-bundles",
+  "type": "symfony-bundle",
+  "description": "RAD features for common Symfony apps.",
+  "homepage": "https://github.com/21TORR/rad-bundles-bundle",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "21TORR",
+      "homepage": "https://www.21torr.com/"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "symfony/config": "^5.1",
+    "symfony/dependency-injection": "^5.1",
+    "symfony/http-kernel": "^5.1"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "symfony/phpunit-bridge": "^5.1"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-next": "1.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Torr\\RadBundles\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Torr\\RadBundles\\": "tests/"
+    }
+  }
+}
