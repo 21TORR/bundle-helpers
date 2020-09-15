@@ -37,4 +37,4 @@ jobs:
                 run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php_cs.dist --dry-run --no-interaction"
 
             -   name: Psalm
-                run: "./vendor/bin/psalm --threads=4 -c vendor-bin/test/vendor/21torr/php-cs/psalm.xml"
+                run: "./vendor/bin/psalm --threads=4 -c vendor-bin/test/vendor/21torr/php-cs/psalm/library.xml"
