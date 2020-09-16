@@ -1,6 +1,6 @@
 {
     "name": "21torr/rad-bundles",
-    "type": "symfony-bundle",
+    "type": "library",
     "description": "RAD features for common Symfony apps.",
     "homepage": "https://github.com/21TORR/rad-bundles-bundle",
     "license": "BSD-3-Clause",
