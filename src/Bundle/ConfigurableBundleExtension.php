@@ -9,8 +9,6 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 /**
  * Base bundle extension, that receives the parsed config + container builder and can modify
  * the container accordingly.
- *
- * @final
  */
 class ConfigurableBundleExtension extends BundleExtension
 {
