@@ -10,8 +10,6 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 /**
  * Base bundle extension, that can be used without needing a custom class.
- *
- * @final
  */
 class BundleExtension extends Extension
 {

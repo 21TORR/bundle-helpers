@@ -34,11 +34,6 @@
             "Torr\\RadBundles\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\Torr\\RadBundles\\": "tests/"
-        }
-    },
     "scripts": {
         "post-install-cmd": [
             "@composer bin all install --ansi"
