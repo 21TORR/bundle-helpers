@@ -1,8 +1,8 @@
 {
-	"name": "21torr/rad-bundles",
+	"name": "21torr/bundle-helpers",
 	"type": "library",
-	"description": "RAD features for common Symfony apps.",
-	"homepage": "https://github.com/21TORR/rad-bundles-bundle",
+	"description": "Helper classes specifically designed to ease implementation of Symfony bundles.",
+	"homepage": "https://github.com/21TORR/bundle-helpers",
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
