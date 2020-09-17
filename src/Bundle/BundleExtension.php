@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Torr\RadBundles\Bundle;
+namespace Torr\BundleHelpers\Bundle;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

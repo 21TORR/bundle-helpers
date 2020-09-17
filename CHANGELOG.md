@@ -1,3 +1,9 @@
+2.0.0
+=====
+
+*   (bc) Rename main namespace to match bundle name.
+
+
 1.0.1
 =====
 

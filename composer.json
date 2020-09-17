@@ -31,7 +31,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Torr\\RadBundles\\": "src/"
+			"Torr\\BundleHelpers\\": "src/"
 		}
 	},
 	"scripts": {
