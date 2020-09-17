@@ -12,33 +12,33 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
  */
 class ConfigurableBundleExtension extends BundleExtension
 {
-    private ConfigurationInterface $config;
-    /** @var callable */
-    private $callback;
+	private ConfigurationInterface $config;
+	/** @var callable */
+	private $callback;
 
-    /**
-     */
-    public function __construct (
-        BundleInterface $bundle,
-        ConfigurationInterface $config,
-        callable $callback,
-        ?string $alias = null
-    )
-    {
-        parent::__construct($bundle, $alias);
-        $this->config = $config;
-        $this->callback = $callback;
-    }
+	/**
+	 */
+	public function __construct (
+		BundleInterface $bundle,
+		ConfigurationInterface $config,
+		callable $callback,
+		?string $alias = null
+	)
+	{
+		parent::__construct($bundle, $alias);
+		$this->config = $config;
+		$this->callback = $callback;
+	}
 
 
-    /**
-     * @inheritDoc
-     */
-    public function load (array $configs, ContainerBuilder $container) : void
-    {
-        parent::load($configs, $container);
+	/**
+	 * @inheritDoc
+	 */
+	public function load (array $configs, ContainerBuilder $container) : void
+	{
+		parent::load($configs, $container);
 
-        $config = $this->processConfiguration($this->config, $configs);
-        ($this->callback)($config, $container);
-    }
+		$config = $this->processConfiguration($this->config, $configs);
+		($this->callback)($config, $container);
+	}
 }

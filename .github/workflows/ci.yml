@@ -16,7 +16,7 @@ jobs:
             -   name: Composer Normalize
                 uses: "docker://ergebnis/composer-normalize-action:latest"
                 with:
-                    args: "--indent-size 4 --indent-style space --dry-run"
+                    args: "--indent-style tab --indent-size 1 --dry-run"
 
             -   name: PHP CS Fixer
                 run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php_cs.dist --dry-run --no-interaction"

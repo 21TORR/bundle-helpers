@@ -13,40 +13,40 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
  */
 class BundleExtension extends Extension
 {
-    private BundleInterface $bundle;
-    private ?string $alias;
+	private BundleInterface $bundle;
+	private ?string $alias;
 
 
-    public function __construct (
-        BundleInterface $bundle,
-        ?string $alias = null
-    )
-    {
-        $this->bundle = $bundle;
-        $this->alias = $alias;
-    }
+	public function __construct (
+		BundleInterface $bundle,
+		?string $alias = null
+	)
+	{
+		$this->bundle = $bundle;
+		$this->alias = $alias;
+	}
 
 
-    /**
-     * @inheritDoc
-     */
-    public function load (array $configs, ContainerBuilder $container) : void
-    {
-        $configDir = "{$this->bundle->getPath()}/config";
+	/**
+	 * @inheritDoc
+	 */
+	public function load (array $configs, ContainerBuilder $container) : void
+	{
+		$configDir = "{$this->bundle->getPath()}/config";
 
-        if (\is_file("{$configDir}/services.yaml"))
-        {
-            $loader = new YamlFileLoader($container, new FileLocator($configDir));
-            $loader->load("services.yaml");
-        }
-    }
+		if (\is_file("{$configDir}/services.yaml"))
+		{
+			$loader = new YamlFileLoader($container, new FileLocator($configDir));
+			$loader->load("services.yaml");
+		}
+	}
 
 
-    /**
-     * @inheritDoc
-     */
-    public function getAlias () : string
-    {
-        return $this->alias ?? parent::getAlias();
-    }
+	/**
+	 * @inheritDoc
+	 */
+	public function getAlias () : string
+	{
+		return $this->alias ?? parent::getAlias();
+	}
 }
