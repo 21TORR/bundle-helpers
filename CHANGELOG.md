@@ -1,3 +1,9 @@
+2.1.0
+=====
+
+*   (feature) Add proper autogeneration of aliases in `BundleExtension`.
+
+
 2.0.0
 =====
 

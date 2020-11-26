@@ -34,6 +34,11 @@
 			"Torr\\BundleHelpers\\": "src/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\Torr\\BundleHelpers\\": "tests/"
+		}
+	},
 	"scripts": {
 		"post-install-cmd": [
 			"@composer bin all install --ansi"
