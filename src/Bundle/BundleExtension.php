@@ -3,10 +3,12 @@
 namespace Torr\BundleHelpers\Bundle;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
+use Torr\BundleHelpers\Exception\BundleHelpersException;
 
 /**
  * Base bundle extension, that can be used without needing a custom class.
@@ -47,6 +49,22 @@ class BundleExtension extends Extension
 	 */
 	public function getAlias () : string
 	{
-		return $this->alias ?? parent::getAlias();
+		if (null !== $this->alias)
+		{
+			return $this->alias;
+		}
+
+		$className = \get_class($this->bundle);
+
+		if ('Bundle' !== \substr($className, -6))
+		{
+			throw new BundleHelpersException(\sprintf(
+				"The bundle does not follow the naming convention; you must pass an explicit alias. Its name should end on 'Bundle', but it is '%s'.",
+				$className
+			));
+		}
+		$classBaseName = \substr(\strrchr($className, '\\'), 1, -6);
+
+		return Container::underscore($classBaseName);
 	}
 }
