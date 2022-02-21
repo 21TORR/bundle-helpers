@@ -22,7 +22,7 @@ class ConfigurableBundleExtension extends BundleExtension
 		BundleInterface $bundle,
 		ConfigurationInterface $config,
 		callable $callback,
-		?string $alias = null
+		?string $alias = null,
 	)
 	{
 		parent::__construct($bundle, $alias);

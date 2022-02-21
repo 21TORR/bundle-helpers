@@ -21,7 +21,7 @@ class BundleExtension extends Extension
 
 	public function __construct (
 		BundleInterface $bundle,
-		?string $alias = null
+		?string $alias = null,
 	)
 	{
 		$this->bundle = $bundle;
@@ -60,10 +60,14 @@ class BundleExtension extends Extension
 		{
 			throw new BundleHelpersException(\sprintf(
 				"The bundle does not follow the naming convention; you must pass an explicit alias. Its name should end on 'Bundle', but it is '%s'.",
-				$className
+				$className,
 			));
 		}
-		$classBaseName = \substr(\strrchr($className, '\\'), 1, -6);
+
+		$classBaseNameForNamespacedClass = \strrchr($className, '\\');
+		$classBaseName = false !== $classBaseNameForNamespacedClass
+			? \substr($classBaseNameForNamespacedClass, 1, -6)
+			: $className;
 
 		return Container::underscore($classBaseName);
 	}
