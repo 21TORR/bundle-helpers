@@ -8,7 +8,7 @@ jobs:
 
         strategy:
             matrix:
-                php: ['7.4', '8.0']
+                php: ['8.0', '8.1']
 
         steps:
             -   name: Checkout Code
@@ -20,7 +20,7 @@ jobs:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
                     php-version: "${{ matrix.php }}"
-                    tools: pecl
+                    tools: "composer, composer-normalize, cs2pr"
 
             -   name: Display versions
                 run: |
@@ -29,17 +29,19 @@ jobs:
                     php -i
 
             -   name: Install Composer
-                uses: php-actions/composer@v1
+                run: composer install --optimize-autoloader --classmap-authoritative --no-interaction
 
             -   name: Composer Normalize
-                uses: "docker://ergebnis/composer-normalize-action:latest"
-                with:
-                    args: "--indent-style tab --indent-size 1 --dry-run"
+                run: composer-normalize --indent-style tab --indent-size 1 --dry-run --ansi
 
             -   name: PHP CS Fixer
-                run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php_cs.dist --dry-run --no-interaction"
+                run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php-cs-fixer.dist.php --dry-run --no-interaction --ansi --format=checkstyle | cs2pr"
                 env:
                     PHP_CS_FIXER_IGNORE_ENV: 1
 
             -   name: PHPStan
-                run: "./vendor/bin/phpstan analyze -c vendor-bin/test/vendor/21torr/php-cs/phpstan/lib.neon ."
+                run: "./vendor/bin/phpstan analyze -c vendor-bin/test/vendor/21torr/php-cs/phpstan/lib.neon . --ansi --error-format=checkstyle | cs2pr"
+
+            -   name: PHPUnit
+                # --teamcity output used by `mheap/phpunit-matcher-action`
+                run: "./vendor/bin/simple-phpunit --teamcity"
