@@ -11,15 +11,15 @@
 	],
 	"homepage": "https://github.com/21TORR/bundle-helpers",
 	"require": {
-		"php": "^8.0",
-		"symfony/config": "^5.1 || ^6.0",
-		"symfony/dependency-injection": "^5.1 || ^6.0",
-		"symfony/http-kernel": "^5.1 || ^6.0"
+		"php": ">= 8.2",
+		"symfony/config": "^6.4 || ^7.0",
+		"symfony/dependency-injection": "^6.4 || ^7.0",
+		"symfony/http-kernel": "^6.4 || ^7.0"
 	},
 	"require-dev": {
-		"bamarni/composer-bin-plugin": "^1.4",
+		"bamarni/composer-bin-plugin": "^1.8.2",
 		"roave/security-advisories": "dev-latest",
-		"symfony/phpunit-bridge": "^5.1 || ^6.0"
+		"symfony/phpunit-bridge": "^7.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -38,16 +38,25 @@
 		"sort-packages": true
 	},
 	"extra": {
+		"bamarni-bin": {
+			"bin-links": false,
+			"forward-command": true
+		},
 		"branch-alias": {
-			"dev-next": "2.x-dev"
+			"dev-next": "3.x-dev"
 		}
 	},
 	"scripts": {
-		"post-install-cmd": [
-			"@composer bin all install --ansi"
+		"fix-lint": [
+			"@composer bin c-norm normalize \"$(pwd)/composer.json\" --indent-style tab --indent-size 1 --ansi",
+			"vendor-bin/cs-fixer/vendor/bin/php-cs-fixer fix --diff --config vendor-bin/cs-fixer/vendor/21torr/php-cs-fixer/.php-cs-fixer.dist.php --no-interaction --ansi"
 		],
-		"post-update-cmd": [
-			"@composer bin all update --ansi"
+		"lint": [
+			"@composer bin c-norm normalize \"$(pwd)/composer.json\" --indent-style tab --indent-size 1 --dry-run --ansi",
+			"vendor-bin/cs-fixer/vendor/bin/php-cs-fixer fix --diff --config vendor-bin/cs-fixer/vendor/21torr/php-cs-fixer/.php-cs-fixer.dist.php --dry-run --no-interaction --ansi --using-cache no"
+		],
+		"test": [
+			"vendor-bin/test/vendor/bin/phpstan analyze -c phpstan.neon . --ansi"
 		]
 	}
 }
