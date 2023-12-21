@@ -3,6 +3,7 @@
 
 * (feature) Allow Symfony 7+ and `21torr/rad` 3+.
 * (improvement) Require PHP 8.2+
+* (internal) Update CI.
 
 
 2.1.2

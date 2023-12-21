@@ -8,11 +8,11 @@ jobs:
 
         strategy:
             matrix:
-                php: ['8.0', '8.1']
+                php: ['8.2', '8.3']
 
         steps:
             -   name: Checkout Code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -20,7 +20,7 @@ jobs:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
                     php-version: "${{ matrix.php }}"
-                    tools: "composer, composer-normalize, cs2pr"
+                    tools: "composer"
 
             -   name: Display versions
                 run: |
@@ -31,17 +31,10 @@ jobs:
             -   name: Install Composer
                 run: composer install --optimize-autoloader --classmap-authoritative --no-interaction
 
-            -   name: Composer Normalize
-                run: composer-normalize --indent-style tab --indent-size 1 --dry-run --ansi
+            -   name: Lint
+                run: composer run-script lint
 
-            -   name: PHP CS Fixer
-                run: "./vendor/bin/php-cs-fixer fix --diff --config vendor-bin/test/vendor/21torr/php-cs/.php-cs-fixer.dist.php --dry-run --no-interaction --ansi --format=checkstyle | cs2pr"
+            -   name: Test Suite
+                run: composer run-script test
                 env:
                     PHP_CS_FIXER_IGNORE_ENV: 1
-
-            -   name: PHPStan
-                run: "./vendor/bin/phpstan analyze -c vendor-bin/test/vendor/21torr/php-cs/phpstan/lib.neon . --ansi --error-format=checkstyle | cs2pr"
-
-            -   name: PHPUnit
-                # --teamcity output used by `mheap/phpunit-matcher-action`
-                run: "./vendor/bin/simple-phpunit --teamcity"
