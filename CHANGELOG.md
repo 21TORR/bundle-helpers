@@ -1,3 +1,10 @@
+2.2.0
+=====
+
+* (feature) Allow Symfony 7+ and `21torr/rad` 3+.
+* (improvement) Require PHP 8.2+
+
+
 2.1.2
 =====
 
