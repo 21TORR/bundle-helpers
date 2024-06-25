@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 class ConfigurableBundleExtension extends BundleExtension
 {
 	private ConfigurationInterface $config;
+
 	/** @var callable */
 	private $callback;
 
@@ -29,7 +30,6 @@ class ConfigurableBundleExtension extends BundleExtension
 		$this->config = $config;
 		$this->callback = $callback;
 	}
-
 
 	/**
 	 * @inheritDoc

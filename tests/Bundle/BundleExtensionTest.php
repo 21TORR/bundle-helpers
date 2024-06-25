@@ -8,6 +8,9 @@ use Tests\Torr\BundleHelpers\Fixtures\OtherExample;
 use Torr\BundleHelpers\Bundle\BundleExtension;
 use Torr\BundleHelpers\Exception\BundleHelpersException;
 
+/**
+ * @internal
+ */
 final class BundleExtensionTest extends TestCase
 {
 	/**
