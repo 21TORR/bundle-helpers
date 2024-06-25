@@ -1,3 +1,11 @@
+2.3.0
+=====
+
+* (feature) Add proper types for configurable bundle extension.
+* (internal) Update CI.
+* (improvement) Require Symfony 7 and PHP 8.3+
+
+
 2.2.0
 =====
 
