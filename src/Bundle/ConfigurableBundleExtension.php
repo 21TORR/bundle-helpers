@@ -14,10 +14,11 @@ class ConfigurableBundleExtension extends BundleExtension
 {
 	private ConfigurationInterface $config;
 
-	/** @var callable */
+	/** @var callable(array, ContainerBuilder): void */
 	private $callback;
 
 	/**
+	 * @param callable(array, ContainerBuilder): void $callback
 	 */
 	public function __construct (
 		BundleInterface $bundle,

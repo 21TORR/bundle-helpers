@@ -1,3 +1,10 @@
+2.3.0
+=====
+
+* (feature) Add proper types for configurable bundle extension.
+* (internal) Update CI.
+
+
 2.2.0
 =====
 
