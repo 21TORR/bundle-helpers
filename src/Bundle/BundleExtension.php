@@ -58,7 +58,7 @@ class BundleExtension extends Extension
 
 		if (!str_ends_with($className, 'Bundle'))
 		{
-			throw new BundleHelpersException(sprintf(
+			throw new BundleHelpersException(\sprintf(
 				"The bundle does not follow the naming convention; you must pass an explicit alias. Its name should end on 'Bundle', but it is '%s'.",
 				$className,
 			));
