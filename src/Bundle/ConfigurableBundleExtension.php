@@ -33,8 +33,9 @@ class ConfigurableBundleExtension extends BundleExtension
 	}
 
 	/**
-	 * @inheritDoc
+	 *
 	 */
+	#[\Override]
 	public function load (array $configs, ContainerBuilder $container) : void
 	{
 		parent::load($configs, $container);
