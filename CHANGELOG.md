@@ -2,6 +2,7 @@
 =====
 
 * (improvement) Properly set up `Extension::getConfiguration()` for the extensions.
+* (improvement) Require Symfony 7.1.
 
 
 2.3.0
