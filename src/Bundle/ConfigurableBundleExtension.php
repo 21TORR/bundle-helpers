@@ -33,13 +33,23 @@ class ConfigurableBundleExtension extends BundleExtension
 	}
 
 	/**
-	 * @inheritDoc
+	 *
 	 */
+	#[\Override]
 	public function load (array $configs, ContainerBuilder $container) : void
 	{
 		parent::load($configs, $container);
 
 		$config = $this->processConfiguration($this->config, $configs);
 		($this->callback)($config, $container);
+	}
+
+	/**
+	 *
+	 */
+	#[\Override]
+	public function getConfiguration (array $config, ContainerBuilder $container) : ?ConfigurationInterface
+	{
+		return $this->config;
 	}
 }

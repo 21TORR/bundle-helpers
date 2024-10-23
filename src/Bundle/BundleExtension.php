@@ -2,6 +2,7 @@
 
 namespace Torr\BundleHelpers\Bundle;
 
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -28,8 +29,9 @@ class BundleExtension extends Extension
 	}
 
 	/**
-	 * @inheritDoc
+	 *
 	 */
+	#[\Override]
 	public function load (array $configs, ContainerBuilder $container) : void
 	{
 		$configDir = "{$this->bundle->getPath()}/config";
@@ -42,8 +44,9 @@ class BundleExtension extends Extension
 	}
 
 	/**
-	 * @inheritDoc
+	 *
 	 */
+	#[\Override]
 	public function getAlias () : string
 	{
 		if (null !== $this->alias)
@@ -53,7 +56,7 @@ class BundleExtension extends Extension
 
 		$className = \get_class($this->bundle);
 
-		if ('Bundle' !== substr($className, -6))
+		if (!str_ends_with($className, 'Bundle'))
 		{
 			throw new BundleHelpersException(sprintf(
 				"The bundle does not follow the naming convention; you must pass an explicit alias. Its name should end on 'Bundle', but it is '%s'.",
@@ -67,5 +70,14 @@ class BundleExtension extends Extension
 			: $className;
 
 		return Container::underscore($classBaseName);
+	}
+
+	/**
+	 *
+	 */
+	#[\Override]
+	public function getConfiguration (array $config, ContainerBuilder $container) : ?ConfigurationInterface
+	{
+		return null;
 	}
 }
