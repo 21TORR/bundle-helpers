@@ -2,6 +2,7 @@
 
 namespace Torr\BundleHelpers\Bundle;
 
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -67,5 +68,14 @@ class BundleExtension extends Extension
 			: $className;
 
 		return Container::underscore($classBaseName);
+	}
+
+	/**
+	 *
+	 */
+	#[\Override]
+	public function getConfiguration (array $config, ContainerBuilder $container) : ?ConfigurationInterface
+	{
+		return null;
 	}
 }

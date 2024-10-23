@@ -1,3 +1,9 @@
+2.3.1
+=====
+
+* (improvement) Properly set up `Extension::getConfiguration()` for the extensions.
+
+
 2.3.0
 =====
 

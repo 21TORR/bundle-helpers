@@ -42,4 +42,13 @@ class ConfigurableBundleExtension extends BundleExtension
 		$config = $this->processConfiguration($this->config, $configs);
 		($this->callback)($config, $container);
 	}
+
+	/**
+	 *
+	 */
+	#[\Override]
+	public function getConfiguration (array $config, ContainerBuilder $container) : ?ConfigurationInterface
+	{
+		return $this->config;
+	}
 }
