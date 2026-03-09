@@ -2,6 +2,7 @@
 =====
 
 * (improvement) Add support for Symfony 8
+* (improvement) Require PHP 8.4
 
 
 2.3.1

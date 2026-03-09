@@ -11,7 +11,7 @@
 	],
 	"homepage": "https://github.com/21TORR/bundle-helpers",
 	"require": {
-		"php": ">= 8.3",
+		"php": ">= 8.4",
 		"symfony/config": "^7.4 || ^8.0",
 		"symfony/dependency-injection": "^7.4 || ^8.0",
 		"symfony/http-kernel": "^7.4 || ^8.0"
