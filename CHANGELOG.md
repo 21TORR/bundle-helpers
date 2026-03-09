@@ -1,3 +1,9 @@
+2.3.2
+=====
+
+* (improvement) Add support for Symfony 8
+
+
 2.3.1
 =====
 
