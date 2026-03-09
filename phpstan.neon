@@ -1,6 +1,48 @@
-includes:
-	- vendor-bin/janus/vendor/21torr/janus/phpstan/lib.neon
+# This file was copied manually von Janus, as we need to exclude the custom rule
 
 parameters:
-	bootstrapFiles:
-		- vendor/bin/.phpunit/phpunit/vendor/autoload.php
+	level: 9
+
+	editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+	checkDynamicProperties: true
+	checkExplicitMixedMissingReturn: true
+	checkUninitializedProperties: true
+	inferPrivatePropertyTypeFromConstructor: true
+	polluteScopeWithLoopInitialAssignments: false
+	reportPossiblyNonexistentConstantArrayOffset: true
+	reportUnmatchedIgnoredErrors: false
+	treatPhpDocTypesAsCertain: false
+
+	# Disable these settings here, as they currently crash in PHPStan v2
+	#excludePaths:
+	#	analyse:
+	#		- %currentWorkingDirectory%/vendor
+	#	analyseAndScan:
+	#		- %currentWorkingDirectory%/node_modules (?)
+	#		- %currentWorkingDirectory%/var (?)
+	#		- %currentWorkingDirectory%/vendor-bin
+
+	ignoreErrors:
+		- message: "#^Attribute class JetBrains\\\\PhpStorm\\\\.*? does not exist\\.$#"
+		- identifier: missingType.iterableValue
+		-
+			identifier: argument.type
+			path: %currentWorkingDirectory%/tests/*
+		-
+			identifier: staticMethod.alreadyNarrowedType
+			path: %currentWorkingDirectory%/tests/*
+		-
+			identifier: method.deprecated
+			path: %currentWorkingDirectory%/tests/*
+		# Using this will have a lot of false-positives, as entities are often used as form
+		# entries and there the fields need to be nullable.
+		- identifier: doctrine.columnType
+
+	excludePaths:
+		analyse:
+			- vendor
+		analyseAndScan:
+			- node_modules (?)
+			- var (?)
+			- vendor-bin

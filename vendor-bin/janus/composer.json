@@ -1,5 +1,10 @@
 {
     "require": {
-        "21torr/janus": "^1.4"
+        "21torr/janus": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "21torr/janus": true
+        }
     }
 }
